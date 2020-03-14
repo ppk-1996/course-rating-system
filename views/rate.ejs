@@ -1,0 +1,107 @@
+<% include partials/header.ejs %>
+<% if (result.rowLength==1){ %>
+
+<div class="container">
+
+
+        <form action="/courses/<%= result.rows[0].course_id; %>" method="post" id="bookform"
+              class="form-horizontal">
+            <fieldset>
+                <% if(triedFeedback==true){ %>
+                    <p class="text-center" style="color:red;">Please fill valid values </p>
+                <%   } %>
+                <!-- Form Name -->
+                <legend class="update-change text-center">
+                    Please say abit about you
+                </legend>
+                <!-- Text input-->
+                <div  class="update-hide form-group">
+                    <label class="col-md-4 control-label" >Your Email</label>
+                    <div class="col-md-4">
+                        <input class="form-control" name="studentemail" placeholder="s******@kmd.mm" type="text">
+                      
+
+                    </div>
+                </div>
+                 <div  class="update-hide form-group">
+                    <label class="col-md-4 control-label" >Academic Year</label>
+                    <div class="col-md-4">
+                        <input class="form-control" name="academicyear" placeholder="Year when you attend this course."  type="text">
+                      
+
+                    </div>
+                </div>
+                 <div class="update-hide form-group">
+                    <label class="col-md-4 control-label">Semester</label>
+                    <div class="col-md-4">
+                        <input class="form-control" name="semester" placeholder="Semester when you attend this course." type="text">
+                      
+
+                    </div>
+                </div>
+                <hr/>
+               
+                <!-- Form Name -->
+                <legend class="text-center">Give feedback on <%= result.rows[0].course_id; %> ( <%= result.rows[0].course_name; %>) </legend>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" >Lecturer</label>
+                    <div class="col-md-4">
+                        <input class="form-control" placeholder="Who teach you this course?" type="text" name="lecturer"/>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" >Feedback</label>
+                    <div class="col-md-4">
+                        <textarea style="height:5em" class="form-control" 
+                            placeholder="Leave Feedback"   name="feedback"></textarea>
+
+                    </div>
+                </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Rating</label>
+                    <div class="col-md-4">
+                        <select class="form-control"  
+                               name="rating" >
+                            <option value="1">1 Star</option>
+                            <option value="2">2 Stars</option>
+                            <option value="3">3 Stars</option>
+                            <option value="4">4 Stars</option>
+                            <option value="5">5 Stars</option>
+                        </select>
+
+                    </div>
+                </div>
+                
+                <hr/>
+                <input hidden=true type="text" name="coursename" value="<%= result.rows[0].course_name; %>">
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="submit"></label>
+                    <div class="col-md-4">
+                        <input class="btn btn-success form-control"
+                               type="submit"
+                               name="send" value="Send"/>
+                               <div class="text-center" style="margin-top:20px;"><a class="btn btn-sm btn-danger" href="/courses">Cancel</a> </div>
+                    </div>
+                </div>
+              
+
+            </fieldset>
+        </form>
+    </div>
+  
+     
+     
+     
+     
+     
+<% }else{ %>
+<p>
+    No such course. <a href="/courses" class="btn">Go Back!</a>
+</p>
+<% }%>
+
+<% include partials/footer.ejs %>

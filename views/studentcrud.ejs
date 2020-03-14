@@ -1,0 +1,119 @@
+<% include partials/header.ejs %>
+
+<div width="100%" class="text-center">
+    <button id="add_admin" class="btn btn-default">Add</button>
+    <button id="update_admin" class="btn btn-default">Update</button>
+    <button id="delete_admin" class="btn btn-default">Delete</button>
+</div>
+<hr/>
+<div class="container">
+    <div
+            class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">Student Table CRUD</div>
+            </div>
+            <div class="panel-body">
+
+                <form action="/studentcrud"
+                      method="post"
+                      class="form-horizontal"
+                      id="admin_crud_form"
+                >
+                    <% if (tried==true){ %>
+                        <p style="color:red;">Wrong Input. Try Again</p>
+                    <% } %>
+
+                    <div class="form-group">
+                        <label id="admin_username" for="admin_username"
+                               class="col-md-3 control-label">StudentID</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="admin_username"
+                                   placeholder="StudentID">
+                        </div>
+                    </div>
+                    <div class="form-group admin_password">
+                        <label for="admin_pass"
+                               class="col-md-3 control-label ">Password</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="admin_pass"
+                                   placeholder="Student Password">
+                        </div>
+                    </div>
+
+                    
+                    <div hidden="hidden" class="form-group admin_new">
+                        <label id="admin_new_password" for="admin_new_pass"
+                               class="col-md-3 control-label">New Password</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" name="admin_new_pass"
+                                   placeholder="Student New Password">
+                        </div>
+                    </div>
+
+                    <div id="add_btn" class="form-group">
+                        <!-- Button -->
+                        <div class="col-md-offset-3 col-md-9">
+                            <button type="submit" name="add_admin"
+                                    class="btn btn-info">
+                                <i class="icon-hand-right"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                    <div hidden="hidden" id="update_btn" class="form-group">
+                        <!-- Button -->
+                        <div class="col-md-offset-3 col-md-9">
+                            <button type="submit" name="update_admin"
+                                    class="btn btn-success">
+                                <i class="icon-hand-right"></i> Update
+                            </button>
+                        </div>
+                    </div>
+                    <div hidden="hidden" id="delete_btn" class="form-group">
+                        <!-- Button -->
+                        <div class="col-md-offset-3 col-md-9">
+                            <button type="submit" name="delete_admin"
+                                    class="btn btn-danger">
+                                <i class="icon-hand-right"></i> Delete
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <h3>Student CRUD</h3>
+    </div>
+    <div class="row">
+        <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>StudentID</th>
+                <th>Password</th>
+
+            </tr>
+            </thead>
+            <tbody>
+                <% result.rows.forEach(function(row){ %>
+                  <tr>
+                    <td>
+                   <%= row.student_id %>
+                    </td>
+                    <td>
+                        <%= row.student_password %>
+                    </td>
+                </tr>
+                  
+                 
+                <% }) %>
+                
+               </tbody>
+        </table>
+    </div>
+</div> <!-- /container -->
+<hr/>
+<% include partials/footer.ejs %>

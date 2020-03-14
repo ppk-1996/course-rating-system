@@ -1,0 +1,28 @@
+<% include partials/header.ejs %>
+
+<% if (result.rowLength>0){ %>
+<div class="container">
+    <h1>You gave feedback on these Courses</h1>
+<% result.rows.forEach(function(row){ %>
+<div>
+    <h4>  <li> <%= row.course_code %> (<%= row.course_name %>) </li></h4> 
+     <p>Lecturer - <%= row.course_lecturer %> </p>
+     <p>Rating - <%= row.rating %> </p>
+      <p>Feedback - <%= row.feedback %> </p>
+       
+</div>
+  
+<%  }) %>
+
+
+<% }else{ %>
+
+<h1>You havn't give any feedback yet.</h1>
+<% } %>
+
+<a href="/courses" class="btn btn-primary">See All Courses</a>
+</div>
+
+
+
+<% include partials/footer.ejs %>

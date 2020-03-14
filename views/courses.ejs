@@ -1,0 +1,39 @@
+<% include ./partials/header %>
+<div class="containter">
+    <div class="row">
+        
+        <form class="form-inline col-md-12 text-center" method="get">
+        <i class="fa fa-search" aria-hidden="true"></i>
+        <input class="form-control" type="text" placeholder="Search Course" name="q">
+        <input class="form-control" type="submit" value="Search">
+         <a href="/courses" class="btn btn-default">Show All</a>
+        </form>
+<div class="col-md-12 text-center" style="margin-top:30px;">
+            <p>Please click on the desire course to give feedback<p>
+        </div>
+        
+        <div class="col-md-12 text-center" style="">
+            <% if (result.rowLength>0){ %>
+                 <% result.rows.forEach(function(row){ %>
+                  <p>
+                 <a href="/courses/<%= row.course_id %>">
+                    <%= row.course_id %> <strong>( <%= row.course_name %> ) </strong>
+                </a> 
+              </p> 
+          <% }) %>
+          <%  } %>
+      
+            
+                
+           
+        </div>
+        
+    </div>
+
+    
+
+</div>
+
+    
+<% include ./partials/footer %>
+
